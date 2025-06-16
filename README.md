@@ -1,6 +1,6 @@
-# 🌊 Sea-Kers - Team Submission
+# Sea-Kers - Team Submission
 
-**Team Name:** SEAKERS  
+**Team Name:** SEA-KERS 
 **Team Code:** HACK639785
 
 ##  Team Members
