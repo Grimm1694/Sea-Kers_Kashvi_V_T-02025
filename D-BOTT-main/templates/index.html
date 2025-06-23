@@ -1,0 +1,318 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-BOTT at your service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            color: #000;
+            transition: all 0.3s;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .info-box {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #chatBox {
+            background: #fff;
+            height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .user-msg {
+            background: #d1e7dd;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 5px 0;
+            text-align: right;
+        }
+        .bot-msg {
+            background: #bbdefb;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 5px 0;
+            text-align: left;
+        }
+        #textInput {
+            padding: 10px;
+            border-radius: 20px;
+        }
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .recording {
+            background: #ffeb3b;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 5px 0;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: #fff;
+        }
+        .dark-mode .container {
+            background-color: #1e1e1e;
+        }
+        .dark-mode .info-box {
+            background: #333;
+        }
+        .dark-mode #chatBox {
+            background: #222;
+            border-color: #444;
+        }
+        .dark-mode #textInput {
+            background: #333;
+            color: #fff;
+            border-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h2 class="mb-4">D-BOT at your service 🏥🤖</h2>
+
+        <!-- Toggle Dark Mode -->
+        <button class="btn btn-dark mb-3" onclick="toggleDarkMode()" aria-label="Toggle Dark Mode">🌙 Toggle Dark Mode</button>
+
+        <!-- Controls Section -->
+        <div class="btn-container">
+            <button id="recordPatientBtn" class="btn btn-success btn-lg" onclick="recordPatientData()" aria-label="Record Patient Data">🎤 Add Patient Data</button>
+            <button id="recordChatBtn" class="btn btn-primary btn-lg" onclick="startVoiceChat()" aria-label="Start Voice Chat">🎤 Ask D-BOT</button>
+            <button id="stopRecordBtn" class="btn btn-danger btn-lg" onclick="stopRecording()" aria-label="Stop Recording" disabled>🛑 Stop Recording</button>
+            <button id="testBtn" class="btn btn-warning btn-lg" onclick="testEndpoint()" aria-label="Test Endpoint">Test Endpoint</button>
+        </div>
+
+        <!-- Patient Data Display -->
+        <div id="patientData" class="info-box mt-3">
+            <strong>Saved Patient Data will appear here...</strong>
+        </div>
+
+        <!-- Chat Box -->
+        <div id="chatBox" class="mt-3" role="log" aria-live="polite"></div>
+
+        <!-- Chat Input -->
+        <div class="input-group mt-2">
+            <input type="text" id="textInput" class="form-control" placeholder="Type a message..." onkeypress="handleKeyPress(event)" aria-label="Chat input">
+            <button class="btn btn-primary" onclick="sendMessage()" aria-label="Send message">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            "What are the symptoms the patient is experiencing?",
+            "What is the patient's medical history?",
+            "What is the patient's name, age, and gender?",
+            "Are there any recent changes in the patient's condition?",
+            "What medications is the patient taking?"
+        ];
+        let currentQuestionIndex = 0;
+        let isRecording = false;
+
+        // Initialize dark mode
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+        }
+
+        function scrollChat() {
+            const chatbox = document.getElementById('chatBox');
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        function startVoiceChat() {
+            if (isRecording) return;
+
+            const chatbox = document.getElementById('chatBox');
+            const recordBtn = document.getElementById('recordChatBtn');
+            const stopBtn = document.getElementById('stopRecordBtn');
+            isRecording = true;
+            recordBtn.disabled = true;
+            stopBtn.disabled = false;
+
+            // Show current question
+            const currentQuestion = questions[currentQuestionIndex];
+            chatbox.innerHTML += `<div class="bot-msg">🤖 ${currentQuestion}</div>`;
+            scrollChat();
+
+            // Start recording
+            chatbox.innerHTML += `<div class="recording">🎙 Recording... (Speak clearly for 7 seconds)</div>`;
+            scrollChat();
+
+            fetch('http://127.0.0.1:5001/record_chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+                .then(response => {
+                    console.log('Record Chat Response:', response);
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Record Chat Data:', data);
+                    chatbox.innerHTML = chatbox.innerHTML.replace('<div class="recording">🎙 Recording... (Speak clearly for 7 seconds)</div>', '');
+                    if (data.error) {
+                        chatbox.innerHTML += `<div class="error">Error: ${data.error}</div>`;
+                    } else {
+                        chatbox.innerHTML += `<div class="user-msg">🗣 ${data.question}</div>`;
+                        chatbox.innerHTML += `<div class="bot-msg">🤖 ${data.answer}</div>`;
+                        currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+                    }
+                    scrollChat();
+                })
+                .catch(error => {
+                    console.error('Record Chat Error:', error);
+                    chatbox.innerHTML = chatbox.innerHTML.replace('<div class="recording">🎙 Recording... (Speak clearly for 7 seconds)</div>', '');
+                    chatbox.innerHTML += `<div class="error">Error: ${error.message}</div>`;
+                    scrollChat();
+                })
+                .finally(() => {
+                    isRecording = false;
+                    recordBtn.disabled = false;
+                    stopBtn.disabled = true;
+                });
+        }
+
+        function stopRecording() {
+            if (!isRecording) return;
+
+            // Note: Server-side recording stops after duration
+            const chatbox = document.getElementById('chatBox');
+            const recordBtn = document.getElementById('recordChatBtn');
+            const stopBtn = document.getElementById('stopRecordBtn');
+            chatbox.innerHTML = chatbox.innerHTML.replace('<div class="recording">🎙 Recording... (Speak clearly for 7 seconds)</div>', '');
+            chatbox.innerHTML += `<div class="error">Recording stopped manually. Processing may still occur.</div>`;
+            scrollChat();
+            isRecording = false;
+            recordBtn.disabled = false;
+            stopBtn.disabled = true;
+        }
+
+        function recordPatientData() {
+            const patientDataDiv = document.getElementById('patientData');
+            const recordBtn = document.getElementById('recordPatientBtn');
+            recordBtn.disabled = true;
+            patientDataDiv.innerHTML = '<strong>🎙 Recording Patient Data...</strong>';
+
+            fetch('http://127.0.0.1:5001/record_patient', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+                .then(response => {
+                    console.log('Record Patient Response:', response);
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Record Patient Data:', data);
+                    if (data.error) {
+                        patientDataDiv.innerHTML = `<strong class="error">Error: ${data.error}</strong>`;
+                    } else {
+                        patientDataDiv.innerHTML = `<strong>Saved Data:</strong><br>
+                            <b>Name:</b> ${data.name}<br>
+                            <b>Age:</b> ${data.age}<br>
+                            <b>Gender:</b> ${data.gender}<br>
+                            <b>Disease:</b> ${data.disease}<br>
+                            <b>Symptoms:</b> ${data.symptoms}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Record Patient Error:', error);
+                    patientDataDiv.innerHTML = `<strong class="error">Error: ${error.message}</strong>`;
+                })
+                .finally(() => {
+                    recordBtn.disabled = false;
+                });
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('textInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const chatbox = document.getElementById('chatBox');
+            chatbox.innerHTML += `<div class="user-msg">🗣 ${message}</div>`;
+            input.value = '';
+            scrollChat();
+
+            fetch('http://127.0.0.1:5001/chat_text', {
+                method: 'POST',
+                body: JSON.stringify({ message }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+                .then(response => {
+                    console.log('Chat Text Response:', response);
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Chat Text Data:', data);
+                    if (data.error) {
+                        chatbox.innerHTML += `<div class="error">Error: ${data.error}</div>`;
+                    } else {
+                        chatbox.innerHTML += `<div class="bot-msg">🤖 ${data.answer}</div>`;
+                    }
+                    scrollChat();
+                })
+                .catch(error => {
+                    console.error('Chat Text Error:', error);
+                    chatbox.innerHTML += `<div class="error">Error: ${error.message}</div>`;
+                    scrollChat();
+                });
+        }
+
+        function testEndpoint() {
+            fetch('http://127.0.0.1:5001/test', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+                .then(response => {
+                    console.log('Test Response:', response);
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Test Data:', data);
+                    alert('Test successful: ' + JSON.stringify(data));
+                })
+                .catch(error => {
+                    console.error('Test Error:', error);
+                    alert('Test failed: ' + error.message);
+                });
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') sendMessage();
+        }
+    </script>
+</body>
+</html>
+```

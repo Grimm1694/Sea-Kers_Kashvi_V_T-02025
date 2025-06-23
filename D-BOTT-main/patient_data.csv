@@ -1,0 +1,16 @@
+Patient ID,Patient Name,Age,Gender,Estimated Disease,UUID,Audio Input,Summary,Symptoms,Patient History,Date of Diagnosis,Timestamp
+,** Nicholas,** 16 years,** Male,** Common cold,b560d6e1-5d8d-4354-8c0e-4aa673f32888,"Nicholas, 16 years, suffering from cold.","**Summary:** A 16-year-old male patient is suffering from a cold.  No further details on patient history or specific symptoms beyond a general cold are provided.
+
+
+**Patient Details:**
+
+* **Patient Name:** Nicholas
+* **Age:** 16 years
+* **Gender:** Male
+* **Estimated Disease:** Common cold
+* **Symptoms:**  Cold symptoms (unspecified)
+* **Patient History:** None provided",**  Cold symptoms (unspecified),** None provided,2025-04-03,2025-04-03 11:46:35
+,Unknown,Unknown,Unknown,Unknown,ec87765d-c29b-4fca-ba3a-86295ca9622a,"This is a simulated transcription. In a real implementation, this would be the transcribed text from the audio.",Please provide the medical text you wish me to summarize and extract patient details from.  I need the text to be able to complete your request.,Unknown,Unknown,2025-06-23,2025-06-23 21:15:55
+,Unknown,Unknown,Unknown,Unknown,650a0874-c7dc-439a-8f37-1e2d7458ec42,Thank you.,Please provide the medical text you wish me to summarize and extract patient details from.,Unknown,Unknown,2025-06-23,2025-06-23 21:31:32
+,Unknown,Unknown,Unknown,Unknown,4581607d-45c9-4631-a0d8-bb1b543fb148,Okay.,Please provide the medical text you wish me to summarize and extract patient details from.,Unknown,Unknown,2025-06-23,2025-06-23 21:39:16
+,Unknown,Unknown,Unknown,Unknown,2adf017f-5a65-4960-83f6-25d227553436,Thank you.,Please provide the medical text you wish me to summarize and extract patient details from.,Unknown,Unknown,2025-06-23,2025-06-23 21:39:28
