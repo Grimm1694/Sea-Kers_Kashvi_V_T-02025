@@ -23,8 +23,6 @@ Explore our idea, implementation, and impact:
 
 ---
 
-> For more details, feel free to reach out or explore the project further in this repository!
-
 
 ## 🛠️ Hardware Overview
 
