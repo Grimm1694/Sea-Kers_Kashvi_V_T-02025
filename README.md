@@ -39,6 +39,6 @@ Images showcasing the hardware setup of the D-BOTT project:
 
 Screenshots showing the software interface and functionality:
 
-![Software Image 1](./D-BOTT/assets/image3.png)
-![Software Image 2](./D-BOTT/assets/image4.png)
-![Software Image 3](./D-BOTT/assets/image5.png)
+![Software Image 1](./D-BOTT/assets/image3.jpg)
+![Software Image 2](./D-BOTT/assets/image4.jpg)
+![Software Image 3](./D-BOTT/assets/image5.jpg)
