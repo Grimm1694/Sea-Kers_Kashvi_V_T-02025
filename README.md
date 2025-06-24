@@ -1,7 +1,7 @@
-# Sea-Kers - Team Submission
+# 🌊 Sea-Kers - Team Submission
 
-**Team Name:** SEA-KERS 
-**Team Code:** HACK639785
+**Team Name:** SEAKERS  
+**Team Code:** Kashvi_V_T-02025
 
 ##  Team Members
 - **Kashvi V**  
@@ -13,14 +13,32 @@
 
 ## Project Idea Video
 Watch our innovation in action on YouTube:  
-[🔗 Click here to view the Idea](https://youtube.com/shorts/w6gotwqT9k4?si=QxFbHOS-4SYUGibg)
+[🔗 Click here to view the Idea](https://youtube.com/shorts/JEH4iucmAuA?feature=share)
 
 ---
 
 ## 📊 Project Presentation (PPT)
 Explore our idea, implementation, and impact:  
-[🔗 View the Presentation on Canva](https://www.canva.com/design/DAGqinMpTb0/UKUjE0XlQTaWsIsHqLqBcA/edit?utm_content=DAGqinMpTb0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+[🔗 View the Presentation on Canva](https://www.canva.com/design/DAGrIYGoAoE/Hopv4JqarsdtWgetYBH8ww/edit?utm_content=DAGrIYGoAoE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ---
 
 > For more details, feel free to reach out or explore the project further in this repository!
+
+
+## 🛠️ Hardware Overview
+
+Images showcasing the hardware setup of the D-BOTT project:
+
+![Hardware Image 1](./D-BOTT/assets/image1.png)
+![Hardware Image 2](./D-BOTT/assets/image2.png)
+
+---
+
+## 💻 Software Interface
+
+Screenshots showing the software interface and functionality:
+
+![Software Image 1](./D-BOTT/assets/image3.png)
+![Software Image 2](./D-BOTT/assets/image4.png)
+![Software Image 3](./D-BOTT/assets/image5.png)
