@@ -28,8 +28,8 @@ Explore our idea, implementation, and impact:
 
 Images showcasing the hardware setup of the D-BOTT project:
 
-![Hardware Image 1](./D-BOTT/assets/image1.png)
-![Hardware Image 2](./D-BOTT/assets/image2.png)
+![Hardware Image 1](./D-BOTT-software/assets/image1.png)
+![Hardware Image 2](./D-BOTT-software/assets/image2.png)
 
 ---
 
@@ -37,6 +37,6 @@ Images showcasing the hardware setup of the D-BOTT project:
 
 Screenshots showing the software interface and functionality:
 
-![Software Image 1](./D-BOTT/assets/image3.jpg)
-![Software Image 2](./D-BOTT/assets/image4.jpg)
-![Software Image 3](./D-BOTT/assets/image5.jpg)
+![Software Image 1](./D-BOTT-software/assets/image3.jpg)
+![Software Image 2](./D-BOTT-software/assets/image4.jpg)
+![Software Image 3](./D-BOTT-software/assets/image5.jpg)
