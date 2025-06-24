@@ -1,0 +1,9 @@
+flask
+flask-cors
+pyaudio
+wave
+google-generativeai
+groq
+pandas
+numpy
+datetime

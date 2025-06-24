@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-BOTT at your service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            color: #000;
+            transition: background 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background 0.3s, color 0.3s;
+        }
+        .info-box {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        #chatbox {
+            background: #fff;
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: background 0.3s;
+        }
+        .user-msg {
+            background: #d1e7dd;
+            padding: 8px;
+            border-radius: 8px;
+            margin: 5px 0;
+            text-align: right;
+        }
+        .bot-msg {
+            background: #bbdefb;
+            padding: 8px;
+            border-radius: 8px;
+            margin: 5px 0;
+            text-align: left;
+        }
+        #textInput {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: background 0.3s, color 0.3s;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #121212;
+            color: #fff;
+        }
+        .dark-mode .container {
+            background-color: #1e1e1e;
+        }
+        .dark-mode .info-box {
+            background: #333;
+        }
+        .dark-mode #chatbox {
+            background: #222;
+            border: 1px solid #444;
+        }
+        .dark-mode #textInput {
+            background: #333;
+            color: #fff;
+            border: 1px solid #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container text-center">
+        <h2 class="mb-4">D-BOT at your service 🏥🤖</h2>
+
+        <!-- Toggle Dark Mode -->
+        <button class="btn btn-dark mb-3" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+
+        <!-- User Profile & Controls -->
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-success btn-lg" onclick="recordPatientData()">🎙 Add Patient Data via voice</button>
+            <button class="btn btn-primary btn-lg" onclick="recordChat()">🎤 Ask D-BOT</button>
+        </div>
+
+        <!-- Patient Data Display -->
+        <div id="patientData" class="info-box mt-3">
+            <strong>Saved Patient Data will appear here...</strong>
+        </div>
+
+        <!-- Chat Box -->
+        <div id="chatbox" class="mt-3"></div>
+
+        <!-- Chat Input -->
+        <input type="text" id="textInput" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+        <button class="btn btn-info mt-2" onclick="sendMessage()">Send</button>
+
+        <!-- Chat Log Display -->
+        <div id="chatlog" class="info-box mt-3">
+            <strong>Chat Log:</strong>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        function recordPatientData() {
+            document.getElementById("patientData").innerHTML = "🎤 Recording Patient Data...";
+            fetch('/record_patient', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("patientData").innerHTML = `<strong>Saved Data:</strong><br> 
+                    <b>Name:</b> ${data.name} <br> <b>Age:</b> ${data.age} <br> 
+                    <b>Gender:</b> ${data.gender} <br> <b>Disease:</b> ${data.disease} <br> 
+                    <b>Symptoms:</b> ${data.symptoms}`;
+            });
+        }
+
+        function recordChat() {
+            document.getElementById("chatbox").innerHTML += `<div class='user-msg'>🎙 Recording...</div>`;
+            fetch('/record_chat', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("chatbox").innerHTML += `<div class='user-msg'>🗣 ${data.question}</div>`;
+                document.getElementById("chatbox").innerHTML += `<div class='bot-msg'>🤖 ${data.answer}</div>`;
+                document.getElementById("chatlog").innerHTML += `<br><b>You:</b> ${data.question} <br><b>Bot:</b> ${data.answer}`;
+            });
+        }
+
+        function sendMessage() {
+            let input = document.getElementById("textInput").value;
+            if (input.trim() === "") return;
+
+            document.getElementById("chatbox").innerHTML += `<div class='user-msg'>🗣 ${input}</div>`;
+            document.getElementById("textInput").value = "";
+
+            fetch('/chat_text', {
+                method: 'POST',
+                body: JSON.stringify({ message: input }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("chatbox").innerHTML += `<div class='bot-msg'>🤖 ${data.answer}</div>`;
+                document.getElementById("chatlog").innerHTML += `<br><b>You:</b> ${input} <br><b>Bot:</b> ${data.answer}`;
+            });
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") sendMessage();
+        }
+    </script>
+
+</body>
+</html>

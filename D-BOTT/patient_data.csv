@@ -1,0 +1,64 @@
+Patient ID,Patient Name,Age,Gender,Estimated Disease,UUID,Audio Input,Summary,Symptoms,Patient History,Date of Diagnosis,Timestamp
+,** Nicholas,** 16 years,** Male,** Common cold,b560d6e1-5d8d-4354-8c0e-4aa673f32888,"Nicholas, 16 years, suffering from cold.","**Summary:** A 16-year-old male patient is suffering from a cold.  No further details on patient history or specific symptoms beyond a general cold are provided.
+
+
+**Patient Details:**
+
+* **Patient Name:** Nicholas
+* **Age:** 16 years
+* **Gender:** Male
+* **Estimated Disease:** Common cold
+* **Symptoms:**  Cold symptoms (unspecified)
+* **Patient History:** None provided",**  Cold symptoms (unspecified),** None provided,2025-04-03,2025-04-03 11:46:35
+,Unknown,Unknown,Unknown,Unknown,34fc4277-4057-4c07-bb31-4def02cd987d,the patient is suffering from dementia,"The provided text only states that the patient is suffering from dementia.  No other details (patient name, age, gender, specific type of dementia, symptoms, or patient history) are given.  Therefore, a complete summary is impossible.",Unknown,Unknown,2025-06-24,2025-06-24 05:56:28
+,Unknown,Unknown,Unknown,Unknown,7a02710a-a372-431c-9ffa-93a56beadf97,Thank you.,Please provide the medical text you wish me to summarize and extract patient details from.  I need the text to be able to complete your request.,Unknown,Unknown,2025-06-24,2025-06-24 05:56:30
+,Unknown,Unknown,Unknown,Unknown,94525a2e-2277-4e57-b8bf-afcfa4006524,The patient name is Darshan. He is suffering from dementia. He has a,"The provided text is incomplete.  It only gives the patient's name (Darshan) and a diagnosis of dementia.  To summarize and extract the other patient details (age, gender, specific symptoms, patient history), more information is needed.",Unknown,Unknown,2025-06-24,2025-06-24 05:56:37
+,** Darshan,** Not specified,** Not specified,** Dementia,7c7ff404-e507-4545-baa1-9082baaea917,The patient name is Darshan. He is suffering from dementia. He has symptoms of sore throat,"**Summary:**
+
+Darshan is a patient suffering from dementia and exhibiting a sore throat.  Further details regarding his medical history, age and gender are not provided in the given text.
+
+
+**Patient Details:**
+
+* **Patient Name:** Darshan
+* **Age:** Not specified
+* **Gender:** Not specified
+* **Estimated Disease:** Dementia
+* **Symptoms:** Sore throat
+* **Patient History:** Not specified",** Sore throat,** Not specified,2025-06-24,2025-06-24 05:56:39
+,** Thomas,** Unknown,** Unknown,** Unknown (although a likely possibility is pharyngitis or a similar upper respiratory infection given the sore throat symptom),06eea6d6-9fe3-4747-9485-3265bec76dc0,The patient's name is Thomas. He is suffering from sore throat. He has,"**Summary:**
+
+The provided text gives a very brief description of a patient, Thomas, experiencing a sore throat.  No further details regarding age, gender, patient history, or estimated disease beyond the symptom are given.
+
+**Patient Details:**
+
+* **Patient Name:** Thomas
+* **Age:** Unknown
+* **Gender:** Unknown
+* **Estimated Disease:** Unknown (although a likely possibility is pharyngitis or a similar upper respiratory infection given the sore throat symptom)
+* **Symptoms:** Sore throat
+* **Patient History:** Unknown",** Sore throat,** Unknown,2025-06-24,2025-06-24 05:58:15
+,Unknown,Unknown,Unknown,Unknown,3e9a4997-1305-4579-b4c7-7b3f0649d79b,The patient's name is Chirag. He has a,Please provide the complete medical text.  I need the rest of the information to summarize it and extract the patient details you requested.,Unknown,Unknown,2025-06-24,2025-06-24 05:59:19
+,** Thomas,**  (Unspecified),** (Unspecified),"**  Likely a pharyngitis (sore throat), but this is a guess based on the symptom.  A definitive diagnosis requires more information.",77c58794-b7f1-4205-8957-a0d510d31670,The patient name is Thomas. He is suffering from sore throat and he is age of,"The provided text is incomplete and lacks sufficient information to create a complete summary.  We only know the following patient details:
+
+* **Patient Name:** Thomas
+* **Age:**  (Unspecified)
+* **Gender:** (Unspecified)
+* **Estimated Disease:**  Likely a pharyngitis (sore throat), but this is a guess based on the symptom.  A definitive diagnosis requires more information.
+* **Symptoms:** Sore throat
+* **Patient History:** (Unspecified)
+
+
+To provide a better summary and extract more details, the text needs to be completed.",** Sore throat,** (Unspecified),2025-06-24,2025-06-24 05:59:40
+,Unknown,Unknown,Unknown,Unknown,b3555ddd-6465-4b3c-928e-0a7ea16af4cb,Thank you.,Please provide the medical text you wish me to summarize and extract patient details from. I need the text to be able to complete your request.,Unknown,Unknown,2025-06-24,2025-06-24 06:18:00
+,Unknown,Unknown,Unknown,Unknown,3292ae0e-2107-4cda-8a3c-f27fa6967060,.,Please provide the medical text you wish me to summarize and extract patient details from.  I need the text to be able to complete your request.,Unknown,Unknown,2025-06-24,2025-06-24 06:18:00
+,** John,** 22,** Male,** Dementia,460b7713-f404-48bd-bb35-c9fdfbb11217,"The patient name is John, age 22, he is suffering from dementia.","**Summary:** A 22-year-old male patient named John is suffering from dementia.  Further details regarding symptoms and patient history are lacking in the provided text.
+
+**Patient Details:**
+
+* **Patient Name:** John
+* **Age:** 22
+* **Gender:** Male
+* **Estimated Disease:** Dementia
+* **Symptoms:**  Not specified.
+* **Patient History:** Not specified.",**  Not specified.,** Not specified.,2025-06-24,2025-06-24 06:49:28
