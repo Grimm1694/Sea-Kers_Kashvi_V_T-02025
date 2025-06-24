@@ -1,4 +1,4 @@
-# 🌊 Sea-Kers - Team Submission
+# Sea-Kers - Team Submission
 
 **Team Name:** SEAKERS  
 **Team Code:** Kashvi_V_T-02025
